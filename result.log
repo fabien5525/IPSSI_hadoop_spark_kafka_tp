@@ -1,0 +1,77 @@
+
+
+ Lancement des containers
+
+ Contenu du dossier /app
+total 412
+-rwxrwxrwx 1 root root  42019 Apr  5 07:14 dataset_sismique.csv
+-rwxrwxrwx 1 root root 260905 Apr  5 10:38 dataset_sismique_aggregation_ex6.json
+-rwxrwxrwx 1 root root   3657 Apr  5 10:38 dataset_sismique_analysis_ex4.json
+-rwxrwxrwx 1 root root 107158 Apr  5 10:38 dataset_sismique_cleaned_ex3.json
+-rwxrwxrwx 1 root root      4 Apr  5 10:38 dataset_sismique_correlation_ex5.json
+drwxrwxrwx 1 root root   4096 Apr  5 07:33 mapred_ex3
+drwxrwxrwx 1 root root   4096 Apr  5 08:27 mapred_ex4
+drwxrwxrwx 1 root root   4096 Apr  5 09:03 mapred_ex5
+drwxrwxrwx 1 root root   4096 Apr  5 09:18 mapred_ex6
+
+
+ Import de /app/dataset_sismique.csv dans HDFS
+Found 1 items
+-rw-r--r--   3 root supergroup      42019 2024-04-05 10:41 /data/dataset_sismique.csv
+
+
+ Lecture fichier dataset_sismique.csv
+date,secousse,magnitude,tension entre plaque
+2024-01-01 00:00:00,False,0.0,0.0
+2024-01-01 00:01:00,False,0.0,1.01
+2024-01-01 00:02:00,False,0.0,1.02
+2024-01-01 00:03:00,False,0.0,1.03
+2024-01-01 00:04:00,False,0.0,1.04
+2024-01-01 00:05:00,False,0.0,1.05
+2024-01-01 00:06:00,False,0.0,1.06
+2024-01-01 00:07:00,False,0.0,1.07
+2024-01-01 00:08:00,False,0.0,1.08
+
+
+ Nettoyage des données avec Hadoop
+
+
+ Import de /app/dataset_sismique_cleaned_ex3.json dans HDFS
+Found 2 items
+-rw-r--r--   3 root supergroup      42019 2024-04-05 10:41 /data/dataset_sismique.csv
+-rw-r--r--   3 root supergroup     107158 2024-04-05 10:41 /data/dataset_sismique_cleaned_ex3.json
+[{"date": "2024-01-01 00:00:00", "secousse": 0, "magnitude": "0.0", "tension entre plaque": "0.0"}, 
+
+ Analyse préliminaire des événements sismiques
+[{"date": "2024-01-01 00:44:00", "secousse": 1, "magnitude": "6.6883646467409665", "tension entre pl
+
+ Corrélation des événements sismiques
+[{"date": "2024-01-01 00:00:00", "secousse": 0, "magnitude": "0.0", "tension entre plaque": "0.0", "
+
+ Agrégation des données sismiques
+{"00:00": [{"date": "2024-01-01 00:00:00", "secousse": 0, "magnitude": "0.0", "tension entre plaque"
+
+ Analyse avec Spark
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.10/community/x86_64/APKINDEX.tar.gz
+(1/4) Installing libquadmath (8.3.0-r0)
+(2/4) Installing libgfortran (8.3.0-r0)
+(3/4) Installing openblas (0.3.6-r0)
+(4/4) Installing py3-numpy (1.16.4-r1)
+Executing busybox-1.30.1-r5.trigger
+OK: 261 MiB in 85 packages
+Collecting pyspark (from -r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/d7/15/4ee019bfbf9e3e7af2c8e94a900f17c079bc39eafe0868b1b50bcade77de/pyspark-3.0.3.tar.gz (209.1MB)
+Collecting py4j==0.10.9 (from pyspark->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/9e/b6/6a4fb90cd235dc8e265a6a2067f2a2c99f0d91787f06aca4bcf7c23f3f80/py4j-0.10.9-py2.py3-none-any.whl (198kB)
+Installing collected packages: py4j, pyspark
+  Running setup.py install for pyspark: started
+    Running setup.py install for pyspark: finished with status 'done'
+Successfully installed py4j-0.10.9 pyspark-3.0.3
+Silhouette with squared euclidean distance = 0.9865383421115475
+Cluster Centers: 
+[0.06602883 0.10405257 1.12996714]
+[6.13928014 1.         1.03885057]
+
+
+ Streaming avec Kafka
